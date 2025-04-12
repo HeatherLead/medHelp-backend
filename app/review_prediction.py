@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.cluster import KMeans
 import joblib
 
-file_path = "D:/coding/medHelp/medHelp-backend/data/medicineDetails.csv"
+file_path = "data/medicineDetails.csv"
 df = pd.read_csv(file_path)
 
 df.rename(columns={
@@ -16,7 +16,7 @@ df = df.dropna(subset=['excellent_review', 'average_review', 'poor_review'])
 kmeans = KMeans(n_clusters=3, random_state=42, n_init=10)
 df['cluster'] = kmeans.fit_predict(df[['excellent_review', 'average_review', 'poor_review']])
 
-joblib.dump(kmeans, "D:/coding/medHelp/medHelp-backend/models/kmeans_model.pkl")
+joblib.dump(kmeans, "models/kmeans_model.pkl")
 
 print("Model saved successfully.")
 
